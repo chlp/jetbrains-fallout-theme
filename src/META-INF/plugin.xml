@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.github.chlp.wasteland-terminal</id>
   <name>Wasteland Terminal</name>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <vendor email="user.raa@gmail.com" url="https://github.com/chlp">chlp</vendor>
   <description><![CDATA[
     <p>A dark green-phosphor theme inspired by retro CRT terminals.</p>
@@ -12,6 +12,9 @@
       <li><b>Editor color scheme "Wasteland Terminal"</b>: syntax colors for Go, PHP, JavaScript,
         TypeScript, HTML, XML, CSS, Markdown, YAML, JSON, SQL and shell scripts, plus diff, debugger,
         search highlighting and console / terminal ANSI colors.</li>
+      <li><b>"Wasteland Terminal CRT"</b>: the same theme with subtle CRT scanlines across the
+        editor and tool windows. The IDE uses the classic flat layout instead of Islands when
+        this variant is active.</li>
     </ul>
     <p>Everything stays green except problems: errors are amber-orange and warnings are
       amber-yellow, so they are easy to spot.</p>
@@ -21,11 +24,13 @@
       <a href="https://github.com/chlp/ghostty-fallout-theme">github.com/chlp/ghostty-fallout-theme</a>.</p>
   ]]></description>
   <change-notes><![CDATA[
+    <p>1.1.0: added the "Wasteland Terminal CRT" theme variant with CRT scanlines.</p>
     <p>1.0.0: first release. UI theme and editor color scheme.</p>
   ]]></change-notes>
   <idea-version since-build="233"/>
   <depends>com.intellij.modules.platform</depends>
   <extensions defaultExtensionNs="com.intellij">
     <themeProvider id="wasteland-terminal" path="/themes/WastelandTerminal.theme.json"/>
+    <themeProvider id="wasteland-terminal-crt" path="/themes/WastelandTerminalCRT.theme.json"/>
   </extensions>
 </idea-plugin>

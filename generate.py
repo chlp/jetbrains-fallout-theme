@@ -58,7 +58,7 @@ def ramp(name, values):
 
 
 # --- UI theme ----------------------------------------------------------------------------------
-def theme_json():
+def theme_json(crt=False):
     colors = {}
     for name, values in [("Gray", GRAY), ("Blue", BLUE), ("Green", GREEN), ("Yellow", YELLOW),
                          ("Orange", ORANGE), ("Red", RED), ("Purple", PURPLE), ("Teal", TEAL)]:
@@ -270,8 +270,8 @@ def theme_json():
         }
     }
 
-    return {
-        "name": "Wasteland Terminal",
+    theme = {
+        "name": "Wasteland Terminal CRT" if crt else "Wasteland Terminal",
         "dark": True,
         "author": "chlp",
         "parentTheme": "ExperimentalDark",
@@ -280,6 +280,43 @@ def theme_json():
         "ui": ui,
         "icons": icons,
     }
+    if crt:
+        # CRT scanlines: a tiled PNG painted under the text of editors and tool windows.
+        # Users can tune it in Settings | Appearance | Background Image. The IDE turns the
+        # Islands layout off when a background image is set, hence a separate theme.
+        theme["background"] = SCANLINES_BG
+    return theme
+
+
+# --- CRT scanlines background --------------------------------------------------------------------
+SCANLINE_PERIOD = 3          # one lit line every N pixels (logical pixels)
+SCANLINE_COLOR = (0x18, 0xff, 0x62)
+SCANLINES_FILE = "crt-scanlines.png"
+SCANLINES_BG = {
+    "image": f"themes/{SCANLINES_FILE}",   # classloader path: no leading slash
+    "transparency": 7,       # opacity in percent; higher = stronger lines
+    "fill": "tile",
+    "anchor": "top_left",
+}
+
+
+def scanlines_png(width=16):
+    """A width x SCANLINE_PERIOD RGBA PNG: first row opaque phosphor green, the rest transparent."""
+    import struct
+    import zlib
+
+    rows = []
+    for y in range(SCANLINE_PERIOD):
+        alpha = 255 if y == 0 else 0
+        rows.append(b"\x00" + bytes(SCANLINE_COLOR + (alpha,)) * width)
+
+    def chunk(kind, data):
+        body = kind + data
+        return struct.pack(">I", len(data)) + body + struct.pack(">I", zlib.crc32(body) & 0xFFFFFFFF)
+
+    header = struct.pack(">IIBBBBB", width, SCANLINE_PERIOD, 8, 6, 0, 0, 0)
+    return (b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", header)
+            + chunk(b"IDAT", zlib.compress(b"".join(rows), 9)) + chunk(b"IEND", b""))
 
 
 # --- Editor colour scheme ----------------------------------------------------------------------
@@ -683,8 +720,11 @@ def scheme_xml():
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "WastelandTerminal.theme.json").write_text(json.dumps(theme_json(), indent=2) + "\n")
+    (OUT / "WastelandTerminalCRT.theme.json").write_text(
+        json.dumps(theme_json(crt=True), indent=2) + "\n")
     (OUT / "WastelandTerminal.xml").write_text(scheme_xml())
-    print(f"Wrote {OUT / 'WastelandTerminal.theme.json'} and {OUT / 'WastelandTerminal.xml'}")
+    (OUT / SCANLINES_FILE).write_bytes(scanlines_png())
+    print(f"Wrote 2 UI themes, the editor scheme and {SCANLINES_FILE} to {OUT}")
 
 
 if __name__ == "__main__":

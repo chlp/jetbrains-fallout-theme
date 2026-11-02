@@ -13,6 +13,10 @@ Ghostty / cmux lives in [ghostty-fallout-theme](https://github.com/chlp/ghostty-
 
 ![Diff viewer](docs/screenshot-diff.png)
 
+"Wasteland Terminal CRT" variant with scanlines:
+
+![Wasteland Terminal CRT](docs/screenshot-crt.png)
+
 ## What's included
 
 - **UI theme** — tool windows, popups, tabs, buttons, selection and scrollbars in phosphor
@@ -20,12 +24,19 @@ Ghostty / cmux lives in [ghostty-fallout-theme](https://github.com/chlp/ghostty-
 - **Editor color scheme "Wasteland Terminal"** — syntax colors for Go, PHP, JS/TS,
   HTML/XML/CSS, Markdown, YAML, JSON, SQL and shell, plus diffs, debugger, search highlights
   and console / terminal ANSI colors.
+- **"Wasteland Terminal CRT" variant** — the same theme with subtle CRT scanlines across the
+  editor and tool windows (a tiled background image, painted under the text). The IDE switches
+  to the classic flat layout instead of Islands while a background image is set, which is why
+  this is a separate theme. Tune or turn the lines off in
+  **Settings -> Appearance & Behavior -> Appearance -> Background Image**.
 - Errors are amber-orange and warnings amber-yellow — the only non-green colors, so problems
   stay visible.
 
 | Path | What it is |
 |---|---|
 | `src/themes/WastelandTerminal.theme.json` | UI theme (generated) |
+| `src/themes/WastelandTerminalCRT.theme.json` | UI theme with scanlines (generated) |
+| `src/themes/crt-scanlines.png` | Scanline tile for the CRT variant (generated) |
 | `src/themes/WastelandTerminal.xml` | Editor color scheme (generated) |
 | `src/META-INF/plugin.xml` | Plugin descriptor |
 | `src/META-INF/pluginIcon.svg` | Plugin icon |
@@ -49,8 +60,8 @@ cd jetbrains-fallout-theme
 Then in the IDE:
 
 1. **Settings -> Plugins -> ⚙ -> Install Plugin from Disk…** -> pick the jar from `dist/`.
-2. **Settings -> Appearance & Behavior -> Appearance -> Theme -> Wasteland Terminal**. The
-   editor scheme switches automatically.
+2. **Settings -> Appearance & Behavior -> Appearance -> Theme -> Wasteland Terminal** (or
+   **Wasteland Terminal CRT**). The editor scheme switches automatically.
 
 If **Sync with OS** is enabled in Appearance, set Wasteland Terminal as the preferred dark
 theme there, otherwise the IDE switches back to its default dark theme.
@@ -63,7 +74,8 @@ import `dist/WastelandTerminal.icls` via **⚙ -> Import Scheme…** without ins
 
 ## Customizing
 
-The palette lives at the top of `generate.py`. After editing it run:
+The palette lives at the top of `generate.py`; scanline period and strength are
+`SCANLINE_PERIOD` and `SCANLINES_BG["transparency"]`. After editing run:
 
 ```bash
 ./build.sh --generate
@@ -79,8 +91,9 @@ This regenerates `src/themes/*` and rebuilds the jar. Reinstall the jar and rest
 
 ## Notes
 
-- There is no CRT shader here — JetBrains IDEs have no custom shader support. For the full
-  CRT look in the terminal use
+- There is no real CRT shader (curvature, glow, flicker) — JetBrains IDEs have no custom
+  shader support; the CRT variant only adds static scanlines. For the full CRT look in the
+  terminal use
   [ghostty-fallout-theme](https://github.com/chlp/ghostty-fallout-theme).
 - Requires IntelliJ Platform 2023.3 or newer.
 
