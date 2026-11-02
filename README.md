@@ -1,5 +1,8 @@
 # Wasteland Terminal — theme for JetBrains IDEs
 
+[![JetBrains Marketplace](https://img.shields.io/jetbrains/plugin/v/35747?label=JetBrains%20Marketplace)](https://plugins.jetbrains.com/plugin/35747-wasteland-terminal)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/35747)](https://plugins.jetbrains.com/plugin/35747-wasteland-terminal)
+
 A dark green-phosphor theme inspired by retro CRT terminals, for GoLand, PhpStorm,
 IntelliJ IDEA, WebStorm, PyCharm and other JetBrains IDEs. A matching terminal theme for
 Ghostty / cmux lives in [ghostty-fallout-theme](https://github.com/chlp/ghostty-fallout-theme).
@@ -32,8 +35,8 @@ Ghostty / cmux lives in [ghostty-fallout-theme](https://github.com/chlp/ghostty-
 
 ## Install
 
-From JetBrains Marketplace (once published): **Settings -> Plugins -> Marketplace** ->
-search for **Wasteland Terminal**.
+From [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/35747-wasteland-terminal): **Settings -> Plugins -> Marketplace** -> search for
+**Wasteland Terminal** -> **Install**.
 
 From source:
 
