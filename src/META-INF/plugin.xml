@@ -1,16 +1,31 @@
 <idea-plugin>
-  <id>com.github.chlp.fallout-theme</id>
-  <name>Fallout Theme</name>
+  <id>com.github.chlp.wasteland-terminal</id>
+  <name>Wasteland Terminal</name>
   <version>1.0.0</version>
-  <vendor url="https://github.com/chlp/jetbrains-fallout-theme">chlp</vendor>
+  <vendor email="user.raa@gmail.com" url="https://github.com/chlp">chlp</vendor>
   <description><![CDATA[
-    Green phosphor dark theme inspired by Pip-Boy terminals.
-    Includes a UI theme and a matching editor colour scheme ("Fallout").
-    Companion of the Fallout theme for Ghostty / cmux (github.com/chlp/ghostty-fallout-theme).
+    <p>A dark green-phosphor theme inspired by retro CRT terminals.</p>
+    <p>Includes:</p>
+    <ul>
+      <li><b>UI theme</b>: tool windows, popups, tabs, buttons, selection and scrollbars in
+        phosphor greens. Uses the Islands look on 2025.3 and newer.</li>
+      <li><b>Editor color scheme "Wasteland Terminal"</b>: syntax colors for Go, PHP, JavaScript,
+        TypeScript, HTML, XML, CSS, Markdown, YAML, JSON, SQL and shell scripts, plus diff, debugger,
+        search highlighting and console / terminal ANSI colors.</li>
+    </ul>
+    <p>Everything stays green except problems: errors are amber-orange and warnings are
+      amber-yellow, so they are easy to spot.</p>
+    <p>To use only the editor colors with another UI theme, pick
+      <i>Settings | Editor | Color Scheme | Wasteland Terminal</i>.</p>
+    <p>A matching terminal theme for Ghostty and cmux is available at
+      <a href="https://github.com/chlp/ghostty-fallout-theme">github.com/chlp/ghostty-fallout-theme</a>.</p>
   ]]></description>
+  <change-notes><![CDATA[
+    <p>1.0.0: first release. UI theme and editor color scheme.</p>
+  ]]></change-notes>
   <idea-version since-build="233"/>
   <depends>com.intellij.modules.platform</depends>
   <extensions defaultExtensionNs="com.intellij">
-    <themeProvider id="fallout-theme" path="/themes/Fallout.theme.json"/>
+    <themeProvider id="wasteland-terminal" path="/themes/WastelandTerminal.theme.json"/>
   </extensions>
 </idea-plugin>

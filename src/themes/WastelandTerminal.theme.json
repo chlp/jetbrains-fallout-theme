@@ -1,9 +1,9 @@
 {
-  "name": "Fallout",
+  "name": "Wasteland Terminal",
   "dark": true,
   "author": "chlp",
   "parentTheme": "ExperimentalDark",
-  "editorScheme": "/themes/Fallout.xml",
+  "editorScheme": "/themes/WastelandTerminal.xml",
   "colors": {
     "Gray1": "#050b05",
     "Gray2": "#081208",

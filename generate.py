@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generates the Fallout JetBrains theme (UI theme JSON + editor colour scheme XML).
+"""Generates the Wasteland Terminal JetBrains theme (UI theme JSON + editor colour scheme XML).
 
 The palette below is the single source of truth. Run `python3 generate.py` after editing it;
 `build.sh` packs the generated files into an installable plugin jar.
@@ -10,7 +10,7 @@ from xml.sax.saxutils import quoteattr
 
 OUT = Path(__file__).resolve().parent / "src" / "themes"
 
-# --- Palette (taken from the Ghostty theme, plus a few in-between shades) ---------------------
+# --- Palette (shared with the Ghostty theme, plus a few in-between shades) ---------------------
 BG = "#050b05"          # editor / terminal background (Ghostty background, palette 0)
 FG = "#18ff62"          # main text (Ghostty foreground, palette 2)
 CURSOR = "#39ff72"
@@ -271,11 +271,11 @@ def theme_json():
     }
 
     return {
-        "name": "Fallout",
+        "name": "Wasteland Terminal",
         "dark": True,
         "author": "chlp",
         "parentTheme": "ExperimentalDark",
-        "editorScheme": "/themes/Fallout.xml",
+        "editorScheme": "/themes/WastelandTerminal.xml",
         "colors": colors,
         "ui": ui,
         "icons": icons,
@@ -653,12 +653,12 @@ def hx(color):
 
 
 def scheme_xml():
-    out = ['<scheme name="Fallout" version="142" parent_scheme="Darcula">',
+    out = ['<scheme name="Wasteland Terminal" version="142" parent_scheme="Darcula">',
            "  <metaInfo>",
            '    <property name="created">2026-11-02T00:00:00</property>',
            '    <property name="ide">idea</property>',
            '    <property name="ideVersion">2026.1.0.0</property>',
-           '    <property name="originalScheme">Fallout</property>',
+           '    <property name="originalScheme">Wasteland Terminal</property>',
            "  </metaInfo>",
            "  <colors>"]
     for name, color in sorted(SCHEME_COLORS.items()):
@@ -682,9 +682,9 @@ def scheme_xml():
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / "Fallout.theme.json").write_text(json.dumps(theme_json(), indent=2) + "\n")
-    (OUT / "Fallout.xml").write_text(scheme_xml())
-    print(f"Wrote {OUT / 'Fallout.theme.json'} and {OUT / 'Fallout.xml'}")
+    (OUT / "WastelandTerminal.theme.json").write_text(json.dumps(theme_json(), indent=2) + "\n")
+    (OUT / "WastelandTerminal.xml").write_text(scheme_xml())
+    print(f"Wrote {OUT / 'WastelandTerminal.theme.json'} and {OUT / 'WastelandTerminal.xml'}")
 
 
 if __name__ == "__main__":
