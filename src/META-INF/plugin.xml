@@ -1,0 +1,16 @@
+<idea-plugin>
+  <id>com.github.chlp.fallout-theme</id>
+  <name>Fallout Theme</name>
+  <version>1.0.0</version>
+  <vendor url="https://github.com/chlp/jetbrains-fallout-theme">chlp</vendor>
+  <description><![CDATA[
+    Green phosphor dark theme inspired by Pip-Boy terminals.
+    Includes a UI theme and a matching editor colour scheme ("Fallout").
+    Companion of the Fallout theme for Ghostty / cmux (github.com/chlp/ghostty-fallout-theme).
+  ]]></description>
+  <idea-version since-build="233"/>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <themeProvider id="fallout-theme" path="/themes/Fallout.theme.json"/>
+  </extensions>
+</idea-plugin>
